@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MusicSchool.Core.DTOs.Student;
 using MusicSchool.Core.Entities;
@@ -65,66 +68,105 @@ namespace MusicSchool.Infrastructure.Services
                 .FirstOrDefaultAsync();
         }
 
+        // Helper para crear parámetros
+        private DbParameter CreateParameter(DbCommand command, string name, object value)
+        {
+            var param = command.CreateParameter();
+            param.ParameterName = name;
+            param.Value = value ?? DBNull.Value;
+            return param;
+        }
 
         public async Task<StudentDto> CreateAsync(StudentCreateDto dto)
         {
-            var student = new Student
-            {
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                BirthDate = dto.BirthDate,
-                IdentificationNumber = dto.IdentificationNumber
-            };
-
-            student.SchoolStudents.Add(new SchoolStudent
-            {
-                SchoolId = dto.SchoolId
-            });
-
-            _context.Students.Add(student);
-            await _context.SaveChangesAsync();
-
-            // Retorna DTO limpio
+            // Recuperar nombre de la escuela para el DTO
             var school = await _context.Schools.FindAsync(dto.SchoolId);
+
+            var createdAt = DateTime.UtcNow;
+
+            int newStudentId;
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SP_CreateStudent";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Parámetros
+                    var parameters = new[]
+                    {
+                        CreateParameter(command, "@FirstName", dto.FirstName),
+                        CreateParameter(command, "@LastName", dto.LastName),
+                        CreateParameter(command, "@BirthDate", dto.BirthDate),
+                        CreateParameter(command, "@IdentificationNumber", dto.IdentificationNumber),
+                        CreateParameter(command, "@SchoolId", dto.SchoolId),
+                        CreateParameter(command, "@CreatedAt", createdAt),
+                        CreateParameter(command, "@UpdatedAt", createdAt)
+                    };
+
+                    foreach (var param in parameters)
+                        command.Parameters.Add(param);
+
+                    // Ejecutar SP
+                    var result = await command.ExecuteScalarAsync();
+                    newStudentId = Convert.ToInt32(result);
+                }
+            }
+
             return new StudentDto
             {
-                Id = student.Id,
-                FullName = $"{student.FirstName} {student.LastName}",
-                IdentificationNumber = student.IdentificationNumber,
-                BirthDate = student.BirthDate,
+                Id = newStudentId,
+                FullName = $"{dto.FirstName} {dto.LastName}",
+                IdentificationNumber = dto.IdentificationNumber,
+                BirthDate = dto.BirthDate,
                 SchoolName = school?.Name
             };
         }
 
         public async Task<bool> UpdateAsync(StudentUpdateDto dto)
         {
-            var student = await _context.Students
-                .Include(s => s.SchoolStudents)
-                .FirstOrDefaultAsync(s => s.Id == dto.Id);
-
-            if (student == null)
-                return false;
-
-            student.FirstName = dto.FirstName;
-            student.LastName = dto.LastName;
-            student.BirthDate = dto.BirthDate;
-            student.IdentificationNumber = dto.IdentificationNumber;
-            student.UpdatedAt = DateTime.UtcNow;
-
-            var currentRelation = student.SchoolStudents.FirstOrDefault();
-            if (currentRelation != null && currentRelation.SchoolId != dto.SchoolId)
+            using (var connection = _context.Database.GetDbConnection())
             {
-                student.SchoolStudents.Remove(currentRelation);
-                student.SchoolStudents.Add(new SchoolStudent
-                {
-                    SchoolId = dto.SchoolId,
-                    EnrollmentDate = DateTime.UtcNow
-                });
-            }
+                await connection.OpenAsync();
 
-            await _context.SaveChangesAsync();
-            return true;
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SP_UpdateStudent";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    var now = DateTime.UtcNow;
+
+                    var parameters = new[]
+                    {
+                        CreateParameter(command, "@Id", dto.Id),
+                        CreateParameter(command, "@FirstName", dto.FirstName),
+                        CreateParameter(command, "@LastName", dto.LastName),
+                        CreateParameter(command, "@BirthDate", dto.BirthDate),
+                        CreateParameter(command, "@IdentificationNumber", dto.IdentificationNumber),
+                        CreateParameter(command, "@SchoolId", dto.SchoolId),
+                        CreateParameter(command, "@UpdatedAt", now)
+                    };
+
+                    foreach (var param in parameters)
+                        command.Parameters.Add(param);
+
+                    try
+                    {
+                        var result = await command.ExecuteScalarAsync();
+                        return Convert.ToInt32(result) == 1;
+                    }
+                    catch (SqlException)
+                    {
+                        // Errores personalizados aquí
+                        return false;
+                    }
+                }
+            }
         }
+
 
         public async Task<bool> DeleteAsync(int id)
         {

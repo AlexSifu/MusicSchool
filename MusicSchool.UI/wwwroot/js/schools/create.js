@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (res && res.ok) {
             window.location.href = "/Schools";
         } else {
-            alert("Error al crear estudiante");
+            alert("Error al crear la escuela");
         }
     });
 });

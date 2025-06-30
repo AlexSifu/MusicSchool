@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MusicSchool.Core.DTOs.Inscriptions;
 using MusicSchool.Core.DTOs.Student;
@@ -61,61 +64,100 @@ namespace MusicSchool.Infrastructure.Services
                 .FirstOrDefaultAsync();
         }
 
+        private DbParameter CreateParameter(DbCommand command, string name, object value)
+        {
+            var param = command.CreateParameter();
+            param.ParameterName = name;
+            param.Value = value ?? DBNull.Value;
+            return param;
+        }
+
+
         public async Task<TeacherDto> CreateAsync(TeacherCreateDto dto)
         {
-            var teacher = new Teacher
-            {
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                IdentificationNumber = dto.IdentificationNumber
-            };
+            var createdAt = DateTime.UtcNow;
+            int newTeacherId;
 
-            teacher.SchoolTeachers.Add(new SchoolTeacher
-            {
-                SchoolId = dto.SchoolId
-            });
-
-            _context.Teachers.Add(teacher);
-            await _context.SaveChangesAsync();
-
-            // Retorna DTO limpio
+            // Obtener el nombre de la escuela antes de abrir la conexión
             var school = await _context.Schools.FindAsync(dto.SchoolId);
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                await connection.OpenAsync();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SP_CreateTeacher";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    var parameters = new[]
+                    {
+                        CreateParameter(command, "@FirstName", dto.FirstName),
+                        CreateParameter(command, "@LastName", dto.LastName),
+                        CreateParameter(command, "@IdentificationNumber", dto.IdentificationNumber),
+                        CreateParameter(command, "@SchoolId", dto.SchoolId),
+                        CreateParameter(command, "@CreatedAt", createdAt),
+                        CreateParameter(command, "@UpdatedAt", createdAt)
+                    };
+
+                    foreach (var param in parameters)
+                        command.Parameters.Add(param);
+
+                    var result = await command.ExecuteScalarAsync();
+                    newTeacherId = Convert.ToInt32(result);
+                }
+            }
+
             return new TeacherDto
             {
-                Id = teacher.Id,
-                FullName = $"{teacher.FirstName} {teacher.LastName}",
-                IdentificationNumber = teacher.IdentificationNumber,
+                Id = newTeacherId,
+                FullName = $"{dto.FirstName} {dto.LastName}",
+                IdentificationNumber = dto.IdentificationNumber,
                 SchoolName = school?.Name
             };
         }
 
+
         public async Task<bool> UpdateAsync(TeacherUpdateDto dto)
         {
-            var student = await _context.Teachers
-                .Include(s => s.SchoolTeachers)
-                .FirstOrDefaultAsync(s => s.Id == dto.Id);
-
-            if (student == null)
-                return false;
-
-            student.FirstName = dto.FirstName;
-            student.LastName = dto.LastName;
-            student.IdentificationNumber = dto.IdentificationNumber;
-            student.UpdatedAt = DateTime.UtcNow;
-
-            var currentRelation = student.SchoolTeachers.FirstOrDefault();
-            if (currentRelation != null && currentRelation.SchoolId != dto.SchoolId)
+            using (var connection = _context.Database.GetDbConnection())
             {
-                student.SchoolTeachers.Remove(currentRelation);
-                student.SchoolTeachers.Add(new SchoolTeacher
-                {
-                    SchoolId = dto.SchoolId,
-                });
-            }
+                await connection.OpenAsync();
 
-            await _context.SaveChangesAsync();
-            return true;
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SP_UpdateTeacher";
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    var now = DateTime.UtcNow;
+
+                    var parameters = new[]
+                    {
+                        CreateParameter(command, "@Id", dto.Id),
+                        CreateParameter(command, "@FirstName", dto.FirstName),
+                        CreateParameter(command, "@LastName", dto.LastName),
+                        CreateParameter(command, "@IdentificationNumber", dto.IdentificationNumber),
+                        CreateParameter(command, "@SchoolId", dto.SchoolId),
+                        CreateParameter(command, "@UpdatedAt", now)
+                    };
+
+                    foreach (var param in parameters)
+                        command.Parameters.Add(param);
+
+                    try
+                    {
+                        var result = await command.ExecuteScalarAsync();
+                        return Convert.ToInt32(result) == 1;
+                    }
+                    catch (SqlException)
+                    {
+                        // Puedes loguear el error si deseas
+                        return false;
+                    }
+                }
+            }
         }
+
 
         public async Task<bool> DeleteAsync(int id)
         {

@@ -1284,7 +1284,7 @@
       "MusicSchool.Core/1.0.0": {
         "runtime": {
           "MusicSchool.Core.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -1296,7 +1296,7 @@
         },
         "runtime": {
           "MusicSchool.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

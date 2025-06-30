@@ -8,7 +8,7 @@
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        const response = await fetch("https://localhost:7164/api/auth/login", {
+        const response = await fetch("https://localhost:5001/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

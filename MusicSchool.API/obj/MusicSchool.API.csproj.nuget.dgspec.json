@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj": {}
+    "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj": {
+    "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj",
+        "projectUniqueName": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj",
         "projectName": "MusicSchool.API",
-        "projectPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj",
-        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.API\\obj\\",
+        "projectPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.API\\MusicSchool.API.csproj",
+        "packagesPath": "C:\\Users\\Deyber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Deyber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,11 +32,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj": {
-                "projectPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj"
+              "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj": {
+                "projectPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj"
               },
-              "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj"
+              "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj"
               }
             }
           }
@@ -51,7 +51,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -99,24 +99,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj": {
+    "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj",
         "projectName": "MusicSchool.Core",
-        "projectPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj",
-        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\obj\\",
+        "projectPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj",
+        "packagesPath": "C:\\Users\\Deyber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Deyber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -143,7 +143,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -164,24 +164,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj": {
+    "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj",
         "projectName": "MusicSchool.Infrastructure",
-        "projectPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Infrastructure\\MusicSchool.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Deyber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Deyber\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -196,8 +196,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj": {
-                "projectPath": "C:\\Users\\USUARIO\\Documents\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj"
+              "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj": {
+                "projectPath": "C:\\Users\\Deyber\\Documents\\Proyectos_net\\MusicSchool\\MusicSchool.Core\\MusicSchool.Core.csproj"
               }
             }
           }
@@ -212,7 +212,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -251,7 +251,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
