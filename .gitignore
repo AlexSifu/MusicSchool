@@ -12,12 +12,15 @@ out/
 # OS generated files
 .DS_Store
 Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Visual Studio files
+.vscode/
+.vs/
 
 # Rider project files
 .idea/
-
-# Visual Studio Code settings
-.vscode/
 
 # NuGet packages
 *.nupkg
@@ -26,3 +29,32 @@ packages/
 
 # Logs
 *.log
+
+# Entity Framework generated files
+Migrations/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Database files (SQL Server local)
+*.mdf
+*.ldf
+*.bak
+
+# Secrets / config files (no subir credenciales)
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Publish output
+publish/
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Others
+node_modules/
+.env
