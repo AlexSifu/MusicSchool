@@ -1,0 +1,38 @@
+﻿@page
+@model MusicSchool.UI.Pages.Teachers.EditModel
+@{
+	ViewData["Title"] = "Profesores";
+}
+
+<h3 class="text-center">Editar profesor</h3>
+
+<div class="text-center" id="error" style="color: red;"></div>
+
+<div class="d-flex justify-content-center">
+    <div class="card w-100">
+        <div class="card-body">
+            <form id="editForm">
+                <div class="mb-3">
+                    <label class="form-label">Nombres</label>
+                    <input class="form-control" type="text" id="firstName" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Apellidos</label>
+                    <input class="form-control" type="text" id="lastName" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">DNI</label>
+                    <input class="form-control" type="number" id="identificationNumber" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Escuela</label>
+                    <select class="form-control" id="schoolId" required></select>
+                </div>
+                <button class="btn btn-success" type="submit">Guardar</button>
+                <a class="btn btn-secondary" href="/Teachers">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script asp-append-version="true" src="~/js/teachers/edit.js" type="module"></script>

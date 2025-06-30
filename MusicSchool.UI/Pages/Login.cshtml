@@ -1,0 +1,31 @@
+﻿@page
+@model MusicSchool.UI.Pages.LoginModel
+@{
+    ViewData["Title"] = "Iniciar sesión";
+}
+
+<h3 class="text-center">Iniciar sesión</h3>
+
+<div class="text-center" id="error" style="color: red;"></div>
+
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 500px;">
+        <div class="card-body">
+            <form id="loginForm">
+                <div class="form-group mb-2">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" class="form-control" required />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Contraseña:</label>
+                    <input type="password" id="password" class="form-control" required />
+                </div>
+
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script asp-append-version="true" src="~/js/login.js" type="module"></script>
