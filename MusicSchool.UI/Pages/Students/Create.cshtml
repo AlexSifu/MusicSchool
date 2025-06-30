@@ -1,0 +1,42 @@
+﻿@page
+@model MusicSchool.UI.Pages.Students.CreateModel
+@{
+	ViewData["Title"] = "Estudiantes";
+}
+
+<h3 class="text-center">Crear estudiante</h3>
+
+<div class="text-center" id="error" style="color: red;"></div>
+
+<div class="d-flex justify-content-center">
+    <div class="card w-100">
+        <div class="card-body">
+            <form id="createForm">
+                <div class="mb-3">
+                    <label class="form-label">Nombres</label>
+                    <input class="form-control" type="text" id="firstName" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Apellidos</label>
+                    <input class="form-control" type="text" id="lastName" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fecha de nacimiento</label>
+                    <input class="form-control" type="date" id="birthdate" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">DNI</label>
+                    <input class="form-control" type="number" id="identificationNumber" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Escuela</label>
+                    <select class="form-control" id="schoolId" required></select>
+                </div>
+                <button class="btn btn-success" type="submit">Crear</button>
+                <a class="btn btn-secondary" href="/Students">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script asp-append-version="true" src="~/js/students/create.js" type="module"></script>

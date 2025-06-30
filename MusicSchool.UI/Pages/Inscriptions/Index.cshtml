@@ -1,0 +1,84 @@
+﻿@page
+@model MusicSchool.UI.Pages.Inscriptions.IndexModel
+@{
+	ViewData["Title"] = "Inscripciones";
+}
+
+<h3 class="text-center">Inscripciones</h3>
+
+<div class="text-center" id="error" style="color: red;"></div>
+
+<div class="d-flex justify-content-center">
+    <div class="card w-100">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Escuela</label>
+                        <select id="schoolId" class="form-control" required></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Profesor</label>
+                        <select id="teacherId" class="form-control" required></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-none" id="studentsContainer">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Alumnos de la escuela
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="schoolStudentsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>DNI</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Los estudiantes se insertan vía JS -->
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <button id="btnAssignStudents" class="btn btn-primary w-100">Asignar estudiantes</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Alumnos Asignados
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="teacherStudentsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>DNI</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Los estudiantes se insertan vía JS -->
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <button id="btnRemoveStudents" class="btn btn-danger w-100">Quitar estudiates</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script asp-append-version="true" src="~/js/inscriptions/index.js" type="module"></script>
