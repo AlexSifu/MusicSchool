@@ -36,7 +36,10 @@ cd MusicSchool
 Update-Database -StartupProject MusicSchool.API
 ```
 
-5. Crear los procedimientos almacenados, se brindará un archivo llamado, SPs_music_school.sql, donde estarán los procedimientos almacenados necesarios, y un insert para agregar un usuario por defecto.
+5. Los procedimientos almacenados necesarios para el sistema, así como un INSERT para agregar un usuario por defecto, se encuentran en el archivo:
+```bash
+/Database/stored_procedures/SPs_music_school.sql
+```
 
 6. Para correr el backend, tendremos que abrir una terminal en la carpeta de MusicSchool.API, y ejecutar:
 ```bash
